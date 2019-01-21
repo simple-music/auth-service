@@ -44,8 +44,7 @@ class CredentialsServiceImpl(
     override fun deleteCredentials(userId: String) {
         try {
             this.credentialsRepository.deleteById(userId)
-        }
-        catch (exception: EmptyResultDataAccessException) {
+        } catch (exception: EmptyResultDataAccessException) {
             throw NotFoundException("credentials not found")
         }
     }

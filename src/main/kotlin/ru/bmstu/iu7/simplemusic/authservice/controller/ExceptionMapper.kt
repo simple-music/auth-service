@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import ru.bmstu.iu7.simplemusic.authservice.exception.NotFoundException
+import ru.bmstu.iu7.simplemusic.authservice.model.Error
 
 @RestControllerAdvice
 class ExceptionMapper {

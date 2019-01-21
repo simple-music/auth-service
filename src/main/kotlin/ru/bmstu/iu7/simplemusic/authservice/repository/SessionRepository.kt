@@ -1,7 +1,7 @@
 package ru.bmstu.iu7.simplemusic.authservice.repository
 
-import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.redis.core.StringRedisTemplate
 import org.springframework.stereotype.Repository
 import ru.bmstu.iu7.simplemusic.authservice.exception.NotFoundException
 

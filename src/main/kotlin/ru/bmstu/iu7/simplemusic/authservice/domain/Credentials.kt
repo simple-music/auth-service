@@ -4,7 +4,7 @@ import javax.persistence.*
 
 @Entity
 @Table(name = "credentials", indexes = [
-        Index(name = "username_password_idx", columnList = "username,password")
+    Index(name = "username_password_idx", columnList = "username,password")
 ])
 data class Credentials(
         @Id
