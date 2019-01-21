@@ -9,6 +9,9 @@ spring:
     host: ${SIMPLE_MUSIC_CREDENTIALS_STORAGE_HOST}
     port: ${SIMPLE_MUSIC_CREDENTIALS_STORAGE_PORT}
     url: jdbc:postgresql://${spring.datasource.host}:${spring.datasource.port}/${spring.datasource.database}
+  redis:
+    host: ${SIMPLE_MUSIC_SESSIONS_STORAGE_HOST}
+    port: ${SIMPLE_MUSIC_SESSIONS_STORAGE_PORT}
   cloud:
     consul:
       enabled: true
