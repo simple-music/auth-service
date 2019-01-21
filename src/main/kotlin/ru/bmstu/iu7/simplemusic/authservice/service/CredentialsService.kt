@@ -1,6 +1,7 @@
 package ru.bmstu.iu7.simplemusic.authservice.service
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.stereotype.Service
 import ru.bmstu.iu7.simplemusic.authservice.domain.Credentials
 import ru.bmstu.iu7.simplemusic.authservice.exception.NotFoundException
@@ -41,7 +42,12 @@ class CredentialsServiceImpl(
     }
 
     override fun deleteCredentials(userId: String) {
-        this.credentialsRepository.deleteById(userId)
+        try {
+            this.credentialsRepository.deleteById(userId)
+        }
+        catch (exception: EmptyResultDataAccessException) {
+            throw NotFoundException("credentials not found")
+        }
     }
 
     private fun encodePassword(password: String): String {

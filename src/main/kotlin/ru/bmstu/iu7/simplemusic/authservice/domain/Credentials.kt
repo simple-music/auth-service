@@ -9,11 +9,11 @@ import javax.persistence.*
 data class Credentials(
         @Id
         @Column(name = "id")
-        val userId: String,
+        val userId: String = "",
 
         @Column(name = "username", unique = true)
-        val username: String,
+        val username: String = "",
 
         @Column(name = "password")
-        val password: String
+        val password: String = ""
 )
