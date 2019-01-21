@@ -1,0 +1,17 @@
+language: java
+jdk:
+  - openjdk11
+
+jobs:
+  include:
+    - stage: build and test
+      script:
+        - ./gradlew build
+      after_script:
+        - ./gradlew clean
+
+    - stage: build image
+      services:
+        - docker
+      script:
+        - docker build -t simple-music/subscriptions-service .
