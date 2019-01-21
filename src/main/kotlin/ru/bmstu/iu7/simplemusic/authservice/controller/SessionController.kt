@@ -25,6 +25,7 @@ class SessionController(@Autowired private val sessionService: SessionService) {
 
     @DeleteMapping
     fun endSession(@RequestBody refreshInfo: RefreshInfo): ResponseEntity<Any> {
-        TODO()
+        this.sessionService.endSession(refreshInfo)
+        return ResponseEntity.ok().build()
     }
 }

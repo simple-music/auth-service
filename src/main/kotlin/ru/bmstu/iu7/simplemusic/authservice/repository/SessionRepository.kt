@@ -18,11 +18,11 @@ class SessionRepositoryImpl(@Autowired private val redisTemplate: StringRedisTem
     }
 
     override fun getUserId(token: String): String {
-        return redisTemplate.opsForValue().get(token)
+        return this.redisTemplate.opsForValue().get(token)
                 ?: throw NotFoundException("token not found")
     }
 
     override fun deleteSession(token: String) {
-        TODO("not implemented")
+       this.redisTemplate.opsForValue().operations.delete(token)
     }
 }

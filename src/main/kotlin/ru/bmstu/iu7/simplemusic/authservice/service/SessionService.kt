@@ -54,7 +54,7 @@ class SessionServiceImpl(@Value(value = "\${security.token-signing-key}")
     }
 
     override fun endSession(refreshInfo: RefreshInfo) {
-        TODO("not implemented")
+        this.sessionRepository.deleteSession(refreshInfo.refreshToken)
     }
 
     private fun createAuthToken(userId: String): String {
