@@ -23,6 +23,6 @@ class SessionRepositoryImpl(@Autowired private val redisTemplate: StringRedisTem
     }
 
     override fun deleteSession(token: String) {
-       this.redisTemplate.opsForValue().operations.delete(token)
+        this.redisTemplate.opsForValue().operations.delete(token)
     }
 }
