@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import ru.bmstu.iu7.simplemusic.authservice.model.AuthCredentials
-import ru.bmstu.iu7.simplemusic.authservice.model.RefreshInfo
 import ru.bmstu.iu7.simplemusic.authservice.model.SessionInfo
 import ru.bmstu.iu7.simplemusic.authservice.service.SessionService
 
@@ -18,14 +17,16 @@ class SessionController(@Autowired private val sessionService: SessionService) {
     }
 
     @PatchMapping
-    fun refreshSession(@RequestBody refreshInfo: RefreshInfo): ResponseEntity<SessionInfo> {
-        val info = this.sessionService.refreshSession(refreshInfo)
+    fun refreshSession(@RequestParam(value = "refreshToken",
+            required = true) refreshToken: String): ResponseEntity<SessionInfo> {
+        val info = this.sessionService.refreshSession(refreshToken)
         return ResponseEntity.ok(info)
     }
 
     @DeleteMapping
-    fun endSession(@RequestBody refreshInfo: RefreshInfo): ResponseEntity<Any> {
-        this.sessionService.endSession(refreshInfo)
+    fun endSession(@RequestParam(value = "refreshToken",
+            required = true) refreshToken: String): ResponseEntity<Any> {
+        this.sessionService.endSession(refreshToken)
         return ResponseEntity.ok().build()
     }
 }

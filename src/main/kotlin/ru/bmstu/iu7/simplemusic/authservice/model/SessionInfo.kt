@@ -12,8 +12,3 @@ data class SessionInfo(
         @JsonProperty(value = "refreshToken")
         val refreshToken: String
 )
-
-data class RefreshInfo(
-        @JsonProperty(value = "refreshToken", required = true)
-        val refreshToken: String
-)

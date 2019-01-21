@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import ru.bmstu.iu7.simplemusic.authservice.model.AuthCredentials
-import ru.bmstu.iu7.simplemusic.authservice.model.RefreshInfo
 import ru.bmstu.iu7.simplemusic.authservice.model.SessionInfo
 import ru.bmstu.iu7.simplemusic.authservice.repository.SessionRepository
 import java.time.ZoneId
@@ -15,8 +14,8 @@ import java.util.*
 
 interface SessionService {
     fun startSession(authCredentials: AuthCredentials): SessionInfo
-    fun refreshSession(refreshInfo: RefreshInfo): SessionInfo
-    fun endSession(refreshInfo: RefreshInfo)
+    fun refreshSession(refreshToken: String): SessionInfo
+    fun endSession(refreshToken: String)
 }
 
 @Service
@@ -43,18 +42,18 @@ class SessionServiceImpl(@Value(value = "\${security.token-signing-key}")
         return sessionInfo
     }
 
-    override fun refreshSession(refreshInfo: RefreshInfo): SessionInfo {
+    override fun refreshSession(refreshToken: String): SessionInfo {
         val userId = this.sessionRepository
-                .getUserId(refreshInfo.refreshToken)
+                .getUserId(refreshToken)
         return SessionInfo(
                 userId = userId,
                 authToken = this.createAuthToken(userId),
-                refreshToken = refreshInfo.refreshToken
+                refreshToken = refreshToken
         )
     }
 
-    override fun endSession(refreshInfo: RefreshInfo) {
-        this.sessionRepository.deleteSession(refreshInfo.refreshToken)
+    override fun endSession(refreshToken: String) {
+        this.sessionRepository.deleteSession(refreshToken)
     }
 
     private fun createAuthToken(userId: String): String {
