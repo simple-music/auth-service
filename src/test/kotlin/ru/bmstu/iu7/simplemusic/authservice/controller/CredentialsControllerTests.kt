@@ -20,7 +20,7 @@ import javax.ws.rs.core.MediaType
 
 @RunWith(SpringRunner::class)
 @WebMvcTest(controllers = [CredentialsController::class])
-class MusicianControllerTests {
+class CredentialsControllerTests {
     @Autowired
     private val mockMvc: MockMvc? = null
 
